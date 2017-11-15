@@ -15,8 +15,11 @@ export default class GuitarString extends Component {
   }
   
   fret = (e, fret, string) => {
-    const newFret = fret === this.state.frettedAt ? null : fret
-    this.setState( _ =>({frettedAt: newFret}),)
+    this.setState( prevState => {
+      const newFret = fret === prevState.frettedAt ? null : fret
+      this.props.updateActiveNote(e, fret, string)
+      return {frettedAt: newFret}
+    })
     //TODO: add update
   }
 
@@ -54,7 +57,7 @@ export default class GuitarString extends Component {
       <div style={nutStyle}>
         <p 
           onMouseOver={(e) => this.highlight(e, 0)}
-          onClick={(e) => this.fret(e, 0)}
+          onClick={(e) => this.fret(e, 0, this.props.string)}
           style={pStyle}>
           {this.props.rootNote}
         </p>

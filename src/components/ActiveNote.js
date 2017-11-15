@@ -9,5 +9,6 @@ export default ({ note }) => {
     padding: '.25em',
     fontFamily: 'monospace'
   }
+
   return <span style={activeNoteStyle}> {note === null ? '-' : note} </span>
 }

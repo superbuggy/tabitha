@@ -14,7 +14,9 @@ export default (props) => {
   }
 
   const containerStyle = {
-    display: 'flex'
+    display: 'flex',
+    padding: 0,
+    margin: 0,
   }
 
   const { handleChange } = props

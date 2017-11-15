@@ -1,7 +1,7 @@
 import React from 'react'
 import GuitarString from './GuitarString'
 
-export default ({frets, strings, roots, minHeight, ...props}) => {
+export default ({frets, strings, roots, minHeight, updateActiveNote, ...props}) => {
   const neckStyle = {
     width: '75%',
     display: 'flex',
@@ -23,6 +23,7 @@ export default ({frets, strings, roots, minHeight, ...props}) => {
       key={i} 
       string={i+1} 
       height={stringHeight}
+      updateActiveNote={updateActiveNote}
     />)
   )
   return (
@@ -31,6 +32,3 @@ export default ({frets, strings, roots, minHeight, ...props}) => {
     </div>
   )
 }
-
-
-
