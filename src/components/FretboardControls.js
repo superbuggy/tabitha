@@ -20,11 +20,17 @@ export default (props) => {
   }
 
   const { handleChange } = props
-  const { tuning, frets, strings } = props
+  const { tuning, frets, strings, activeNotes } = props
 
   let notes = tuning.slice().reverse().map((rootNote, i) => (
     <span key={i} style={noteStyle}>
       {rootNote}
+    </span>
+  ))
+
+  let activeNotesList = Object.keys(activeNotes).map((note, i)=>(
+    <span key={i}>
+      {activeNotes[note]}
     </span>
   ))
   return (
@@ -48,6 +54,7 @@ export default (props) => {
         />
 
         <div>{notes}</div>
+        <div>{activeNotesList}</div>
     </div>
   )
 }

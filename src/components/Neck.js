@@ -25,7 +25,7 @@ export default class Neck extends Component {
 
   handleChange = ({ target, ...event }) => {
     const value = target.type === 'number' ? +target.value : target.value
-    const activeNotes = this.state.activeNotes
+    let activeNotes = this.state.activeNotes
     if (target.name ==='strings' && value > this.state.strings) {
       this.state.tuning.push("X#")
       activeNotes = this.mapActiveNotes(this.tuning)
@@ -43,7 +43,7 @@ export default class Neck extends Component {
   }
 
   render() {
-    const {tuning, frets, strings} = this.state
+    const {tuning, frets, strings, activeNotes} = this.state
     const containerStyle = {
       display: 'flex',
       flexDirection: 'column'
@@ -51,7 +51,13 @@ export default class Neck extends Component {
     return (
       <div>
         <Fretboard minHeight={200} roots={tuning} frets={frets} strings={strings} />
-        <FretboardControls handleChange={this.handleChange} tuning={tuning} frets={frets} strings={strings} />
+        <FretboardControls
+          handleChange={this.handleChange}
+          tuning={tuning}
+          frets={frets}
+          activeNotes={activeNotes}
+          strings={strings}
+        />
       </div>
     )
   }
