@@ -1,4 +1,6 @@
 import React from 'react'
+import ActiveNote from './ActiveNote'
+import TuningNote from './ActiveNote'
 
 export default (props) => {
   const inputStyle = {
@@ -7,32 +9,20 @@ export default (props) => {
 
   const divStyle = {
     width: '40%',
-    margin: '0 auto'
-  }
-
-  const noteStyle = {
-    color: 'rgb(255, 222, 132)',
-    background: 'darkgrey',
-    border: '1px solid black',
-    marginTop: '1em',
-    padding: '.25em',
-    fontFamily: 'monospace'
+    margin: '0 auto',
   }
 
   const { handleChange } = props
   const { tuning, frets, strings, activeNotes } = props
 
   let notes = tuning.slice().reverse().map((rootNote, i) => (
-    <span key={i} style={noteStyle}>
-      {rootNote}
-    </span>
+    <TuningNote key={i} note={rootNote}/>
   ))
 
   let activeNotesList = Object.keys(activeNotes).map((note, i)=>(
-    <span key={i}>
-      {activeNotes[note]}
-    </span>
+    <ActiveNote key={i} note={activeNotes[note]}/>
   ))
+
   return (
     <div style={divStyle}>
       <input

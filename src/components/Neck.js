@@ -25,11 +25,19 @@ export default class Neck extends Component {
   handleChange = ({ target, ...event }) => {
     const value = target.type === 'number' ? +target.value : target.value
     let {activeNotes, tuning} = this.state
+
     if (target.name ==='strings' && value > this.state.strings) {
       tuning = this.state.tuning.slice()
       tuning.push("X#")
       activeNotes = this.mapActiveNotes(tuning)
     }
+
+    if (target.name === 'strings' && value < this.state.strings) {
+      tuning = this.state.tuning.slice()
+      tuning.pop()
+      activeNotes = this.mapActiveNotes(tuning)
+    }
+
     this.setState(_ => ({
       [target.name]: value,
       activeNotes,
@@ -40,7 +48,7 @@ export default class Neck extends Component {
   updateActiveNote = () => {
     this.setState(_ => {
 
-    }, _ => console.log('up', this.state))
+    }, _ => console.log('update', this.state))
   }
 
   render() {
