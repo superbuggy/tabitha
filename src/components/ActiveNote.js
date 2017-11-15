@@ -5,10 +5,11 @@ export default ({ note }) => {
     color: 'rgb(64, 222, 64)',
     background: 'darkgrey',
     border: '1px solid black',
-    marginTop: '1em',
     padding: '.25em',
-    fontFamily: 'monospace'
+    fontFamily: 'monospace',
+    minWidth: '1em'
   }
-
-  return <span style={activeNoteStyle}> {note === null ? '-' : note} </span>
+  console.log(note)
+  if (note && note < 10) note = '0' + note
+  return <span style={activeNoteStyle}> {note === null ? '--' : note} </span>
 }

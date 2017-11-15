@@ -26,7 +26,7 @@ export default (props) => {
     <TuningNote key={i} note={rootNote}/>
   ))
 
-  let activeNotesList = Object.keys(activeNotes).map((note, i)=>(
+  let activeNotesList = Object.keys(activeNotes).reverse().map((note, i)=>(
     <ActiveNote key={i} note={activeNotes[note]}/>
   ))
 
