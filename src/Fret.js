@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default ({ height, width }) => {
-  const style = {
+export default ({ height, width, fret, string, onMouseOver, onClick, highlighted, ...props}) => {
+  const fretStyle = {
     width,
     boxSizing: 'border-box',
     borderRight: '4px solid rgb(156, 156, 156)',
-    background: 'rgb(249, 221, 156)',
+    background: highlighted ? 'rgb(255, 201, 196)' : 'rgb(249, 221, 156)',
     minHeight: height,
     display: 'inline-flex',
   }
@@ -17,9 +17,12 @@ export default ({ height, width }) => {
   }
   let stringDiv = <div style={stringStyle}></div>
   return (
-    <div style={style}>
+    <div 
+      onMouseOver={(e) => onMouseOver(e, fret)} 
+      onClick={(e) => onClick(e, fret, string)} 
+      style={fretStyle}
+    >
       {stringDiv}
     </div>
   )
 }
-

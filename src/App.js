@@ -1,15 +1,6 @@
 import React, { Component } from 'react'
-import NeckContainer from './NeckContainer'
+import Fretboard from './Fretboard'
 
-class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {}
-  }
+export default _ => <Fretboard />
 
-  render() {
-    return <NeckContainer strings={6}/>
-  }
-}
 
-export default App
