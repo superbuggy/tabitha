@@ -1,21 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class ActiveNote extends Component {
-  constructor (props) {
-    super(props)
+export default ({ note }) => {
+  const activeNoteStyle = {
+    color: 'rgb(64, 222, 64)',
+    background: 'darkgrey',
+    border: '1px solid black',
+    marginTop: '1em',
+    padding: '.25em',
+    fontFamily: 'monospace'
   }
-
-  render () {
-    const activeNoteStyle = {
-      color: 'rgb(255, 222, 132)',
-      background: 'darkgrey',
-      border: '1px solid black',
-      marginTop: '1em',
-      padding: '.25em',
-      fontFamily: 'monospace'
-    }
-    return (
-      <span style={activeNoteStyle}> {this.props.note} </span>
-    )
-  }
+  return <span style={activeNoteStyle}> {note || '-'} </span>
 }

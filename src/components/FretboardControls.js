@@ -1,6 +1,6 @@
 import React from 'react'
 import ActiveNote from './ActiveNote'
-import TuningNote from './ActiveNote'
+import TuningNote from './TuningNote'
 
 export default (props) => {
   const inputStyle = {
@@ -10,6 +10,11 @@ export default (props) => {
   const divStyle = {
     width: '40%',
     margin: '0 auto',
+    minHeight: window.innerHeight
+  }
+
+  const containerStyle = {
+    display: 'flex'
   }
 
   const { handleChange } = props
@@ -32,7 +37,7 @@ export default (props) => {
         placeholder="..."
         value={frets}
         style={inputStyle}
-        />
+      />
 
       <input
         onChange={handleChange}
@@ -41,10 +46,10 @@ export default (props) => {
         placeholder="..."
         value={strings}
         style={inputStyle}
-        />
+      />
 
-        <div>{notes}</div>
-        <div>{activeNotesList}</div>
+      <div style={containerStyle}>{notes}</div>
+      <div style={containerStyle}>{activeNotesList}</div>
     </div>
   )
 }
