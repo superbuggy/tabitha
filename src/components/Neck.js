@@ -8,7 +8,6 @@ export default class Neck extends Component {
     const tuning = ['E4', 'B3', 'G3', 'D3', 'A2', 'E2']
     const frets = 24
     const strings = 6
-    // const activeNotes = tuning.reduce((actives, note, i) => (actives[`string${i + 1}`] = null, actives), {})
     const activeNotes = this.mapActiveNotes(tuning)
     this.state = {
       tuning,
@@ -25,14 +24,16 @@ export default class Neck extends Component {
 
   handleChange = ({ target, ...event }) => {
     const value = target.type === 'number' ? +target.value : target.value
-    let activeNotes = this.state.activeNotes
+    let {activeNotes, tuning} = this.state
     if (target.name ==='strings' && value > this.state.strings) {
-      this.state.tuning.push("X#")
-      activeNotes = this.mapActiveNotes(this.tuning)
+      tuning = this.state.tuning.slice()
+      tuning.push("X#")
+      activeNotes = this.mapActiveNotes(tuning)
     }
     this.setState(_ => ({
       [target.name]: value,
-      activeNotes
+      activeNotes,
+      tuning
     }), _ => console.log(this.state))
   }
 
