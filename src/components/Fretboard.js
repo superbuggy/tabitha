@@ -1,18 +1,20 @@
 import React from 'react'
 import GuitarString from './GuitarString'
 
-export default ({frets, strings, roots, height, addNote, removeNote, ...props}) => {
+export default ({frets, strings, roots, minHeight, ...props}) => {
   const neckStyle = {
     width: '75%',
     display: 'flex',
     flexDirection: 'column',
     borderTop: '2px solid rgb(213, 192, 142)',
     borderBottom: '2px solid rgb(213, 192, 142)',
-    margin: '0 auto'
+    margin: '0 auto',
+    minHeight,
+    maxHeight: '320px'
   }
-  const width = parseFloat(window.innerWidth * .75 / frets, 2)
-  const stringHeight = parseFloat(height/strings, 2)
-  roots = roots.reverse()
+  const width = window.innerWidth
+  const modifier = strings > 6 ? 6 : strings
+  const stringHeight = parseFloat(minHeight/modifier, 2)
   let guitarStrings = [...Array(strings)].map( (_, i) =>
     (<GuitarString 
       rootNote={roots[i]} 
@@ -21,8 +23,6 @@ export default ({frets, strings, roots, height, addNote, removeNote, ...props}) 
       key={i} 
       string={i+1} 
       height={stringHeight}
-      addNote={addNote}
-      removeNote={removeNote}
     />)
   )
   return (

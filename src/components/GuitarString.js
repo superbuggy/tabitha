@@ -15,10 +15,9 @@ export default class GuitarString extends Component {
   }
   
   fret = (e, fret, string) => {
-    console.log('as')
-    this.setState( _ =>({frettedAt: fret}),_=>console.log(this.state))
-    this.props.addNote(e, fret, string)
-    // TODO: this.props.removeNote()
+    const newFret = fret === this.state.frettedAt ? null : fret
+    this.setState( _ =>({frettedAt: newFret}),)
+    //TODO: add update
   }
 
   render () {
@@ -36,8 +35,9 @@ export default class GuitarString extends Component {
       paddingRight: '.25em',
       paddingLeft: '1em'
     }
+    const fretWidth = parseFloat(this.props.width * .75 / this.props.frets, 2)
 
-    let frets = [...Array(this.props.frets)].map( (_, i) => 
+    const fretList = [...Array(this.props.frets)].map( (_, i) => 
       (<Fret
         key={i}
         string={this.props.string} 
@@ -45,15 +45,20 @@ export default class GuitarString extends Component {
         onMouseOver={this.highlight} 
         onClick={this.fret} 
         height={this.props.height} 
-        width={this.props.width}
+        width={fretWidth}
         highlighted={this.state.highlightedAt === i+1}
+        active={this.state.frettedAt === i+1}
       />)
     )
-
     return (
       <div style={nutStyle}>
-        <p onMouseOver={(e) => this.highlight(e, 0)} style={pStyle}>{this.props.rootNote}</p>
-        {frets}
+        <p 
+          onMouseOver={(e) => this.highlight(e, 0)}
+          onClick={(e) => this.fret(e, 0)}
+          style={pStyle}>
+          {this.props.rootNote}
+        </p>
+        {fretList}
       </div>
     )
   }
