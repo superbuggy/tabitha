@@ -25,12 +25,14 @@ export default class Neck extends Component {
 
   handleChange = ({ target, ...event }) => {
     const value = target.type === 'number' ? +target.value : target.value
+    const activeNotes = this.state.activeNotes
     if (target.name ==='strings' && value > this.state.strings) {
       this.state.tuning.push("X#")
-      this.mapActiveNotes(this.tuning)
+      activeNotes = this.mapActiveNotes(this.tuning)
     }
     this.setState(_ => ({
-      [target.name]: value
+      [target.name]: value,
+      activeNotes
     }), _ => console.log(this.state))
   }
 
