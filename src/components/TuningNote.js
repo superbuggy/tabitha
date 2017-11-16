@@ -27,7 +27,8 @@ export default class TuningNote extends Component {
       border: '1px solid black',
       marginTop: '1em',
       padding: '.25em',
-      fontFamily: 'monospace'
+      fontFamily: 'monospace',
+      minWidth: '3em'
     }
     let display = <span onClick={this.handleClick} style={tuningNoteStyle}> {this.props.note || '-'} </span>
     const inputStyle = {
@@ -37,7 +38,7 @@ export default class TuningNote extends Component {
       margin: 0,
       color: 'rgb(255, 222, 64)',
       background: 'darkgrey',
-      fontFamily: 'monospace'
+      fontFamily: 'monospace',
     }
     let input = <input onClick={this.handleClick} onChange={this.handleChange} type="text" name="note" value={this.state.note} style={inputStyle}/>
     return this.state.editing ? input : display

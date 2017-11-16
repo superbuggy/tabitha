@@ -2,7 +2,7 @@ import React from 'react'
 import ActiveNote from './ActiveNote'
 import TuningNote from './TuningNote'
 
-export default (props) => {
+const FretboardControls = (props) => {
   const inputStyle = {
     maxWidth: '50px',
   }
@@ -21,14 +21,14 @@ export default (props) => {
 
   const { handleChange } = props
   const { tuning, frets, strings, activeNotes } = props
+  console.log(activeNotes)
+  let notes = tuning.slice().map((rootNote, i) => (
+    <TuningNote key={i} note={rootNote} string={i + 1}/>
+  )).reverse()
 
-  let notes = tuning.slice().reverse().map((rootNote, i) => (
-    <TuningNote key={i} note={rootNote}/>
-  ))
-
-  let activeNotesList = Object.keys(activeNotes).reverse().map((note, i)=>(
-    <ActiveNote key={i} note={activeNotes[note]}/>
-  ))
+  let activeNotesList = Object.keys(activeNotes).map((note, i)=>(
+    <ActiveNote key={i} root={tuning[i]} fret={activeNotes[note]} string={i + 1}/>
+  )).reverse()
 
   return (
     <div style={divStyle}>
@@ -55,3 +55,5 @@ export default (props) => {
     </div>
   )
 }
+
+export default FretboardControls

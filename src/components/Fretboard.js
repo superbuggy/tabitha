@@ -1,7 +1,7 @@
 import React from 'react'
 import GuitarString from './GuitarString'
 
-export default ({frets, strings, roots, minHeight, updateActiveNote, ...props}) => {
+const Fretboard = ({frets, strings, roots, minHeight, updateActiveNote, ...props}) => {
   const neckStyle = {
     width: '75%',
     display: 'flex',
@@ -32,3 +32,5 @@ export default ({frets, strings, roots, minHeight, updateActiveNote, ...props}) 
     </div>
   )
 }
+
+export default Fretboard
