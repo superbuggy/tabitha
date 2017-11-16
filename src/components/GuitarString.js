@@ -28,15 +28,18 @@ export default class GuitarString extends Component {
       background: 'rgb(248, 232, 222)',
       display: 'flex',
       minHeight: this.props.height,
-      maxHeight: this.props.height
+      maxHeight: this.props.height,
     }
-
+    
     const pStyle = { 
       color: this.state.highlightedAt === 0 ? 'rgb(255, 201, 196)' : 'rgb(148, 128, 133)',
+      maxWidth: '2em',
+      minWidth: '2em',
       fontFamily: 'monospace',
       fontSize: '16px',
       paddingRight: '.25em',
-      paddingLeft: '1em'
+      paddingLeft: '1em',
+      textAlign: 'right'
     }
     const fretWidth = parseFloat(this.props.width * .75 / this.props.frets, 2)
 

@@ -11,7 +11,7 @@ const ActiveNote = ({ fret, root, ...props }) => {
     minWidth: '3em'
   }
   const tonalNote = Note.simplify(Note.from({ alt: fret }, root))
-  console.log(tonalNote)
+  // console.log(tonalNote)
   if (fret && fret < 10) fret = '0' + fret
   return <span style={activeFretStyle}> {fret === null ? '--' : tonalNote} </span>
 }

@@ -20,10 +20,10 @@ const FretboardControls = (props) => {
   }
 
   const { handleChange } = props
-  const { tuning, frets, strings, activeNotes } = props
-  console.log(activeNotes)
+  const { tuning, frets, strings, activeNotes, updateTuning } = props
+  console.log(props)
   let notes = tuning.slice().map((rootNote, i) => (
-    <TuningNote key={i} note={rootNote} string={i + 1}/>
+    <TuningNote key={i} note={rootNote} string={i + 1} updateTuning={updateTuning} />
   )).reverse()
 
   let activeNotesList = Object.keys(activeNotes).map((note, i)=>(

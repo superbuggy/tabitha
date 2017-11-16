@@ -45,6 +45,13 @@ export default class Neck extends Component {
     }), _ => console.log(this.state))
   }
 
+  updateTuning = (e, i, note) => {
+    this.setState(prevState => {
+      prevState.tuning[i] = note
+      return prevState
+    })
+  }
+
   updateActiveNote = (e, fret, string) => {
     this.setState(prevState => {
       let activeNotes = prevState.activeNotes
@@ -69,13 +76,14 @@ export default class Neck extends Component {
           frets={frets}
           strings={strings}
           updateActiveNote={this.updateActiveNote}
-        />
+          />
         <FretboardControls
           handleChange={this.handleChange}
           tuning={tuning}
           frets={frets}
           activeNotes={activeNotes}
           strings={strings}
+          updateTuning={this.updateTuning}
         />
       </div>
     )
