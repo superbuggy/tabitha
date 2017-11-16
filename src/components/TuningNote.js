@@ -4,18 +4,18 @@ import { Note } from 'tonal'
 export default class TuningNote extends Component {
   constructor (props) {
     super(props)
-    console.log(Note.from({alt:0}, this.props.note), this.props.note)
     this.state = {
-      note: Note.from({ alt: 0 }, Note.simplify(this.props.note)) || `!!${this.props.note}`,
+      note: Note.from({ alt: 0 }, Note.simplify(this.props.note)),
       editing: false
     }
   }
 
+  componentDidUpdate () {
+    this.input.focus()
+  }
+
   handleClick = (e) => {
-    if (this.state.editing) {
-      // some stuff
-    }
-    this.setState(_=>({editing: true}), _=> console.log(this.state))
+    this.setState(_=>({editing: true}))
   }
   
   handleSubmit = (e) => {
@@ -23,7 +23,7 @@ export default class TuningNote extends Component {
     e.persist()
     this.setState(prevState=>({
       editing: false,
-      note: Note.from({ alt: 0 }, Note.simplify(prevState.note))// || `!${prevState.note}`
+      note: Note.from({ alt: 0 }, Note.simplify(prevState.note))
     }), _ => this.props.updateTuning(e, this.props.string - 1, this.state.note))
   }
 
@@ -46,17 +46,20 @@ export default class TuningNote extends Component {
       display: this.state.editing ? 'none' : 'inline-block'
     }
     const inputStyle = {
-      minWidth: '1em',
+      fontSize: '16px',
+      minWidth: '3em',
       maxWidth: '3em',
-      minHeight: '2em',
+      minHeight: '1em',
+      maxHeight: '1em',
       padding: '0',
       margin: '0',
+      border: '1px solid black',
       color: 'rgb(255, 222, 64)',
       background: 'darkgrey',
       fontFamily: 'monospace',
     }
     const formStyle = {
-      display: this.state.editing ? 'block' : 'none',
+      display: this.state.editing ? 'inline-block' : 'none',
       maxWidth: '3em',
       border: '0',
       margin: '0',
@@ -71,11 +74,11 @@ export default class TuningNote extends Component {
     return (
       <div style={containerStyle}>
         <span onClick={this.handleClick} style={tuningNoteStyle}> 
-          {this.props.note || '-'} 
+          {this.props.note || 'uh oh'} 
         </span>
         <form onSubmit={this.handleSubmit} style={formStyle}>
           <input 
-            autoFocus 
+            ref={(input) => { this.input = input }} 
             onChange={this.handleChange} 
             type="text" 
             name="note" 
