@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Note } from 'tonal'
 
 export default class TuningNote extends Component {
   constructor (props) {
@@ -13,10 +14,19 @@ export default class TuningNote extends Component {
     if (this.state.editing) {
       // some stuff
     }
-    this.setState({editing: !this.state.editing})
+    this.setState(_=>({editing: true}), _=> console.log(this.state))
+  }
+  
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(e.target.value)
+    this.setState({editing: false})
   }
 
   handleChange = (e) => {
+    e.persist()
+    let newTonalNote = Note.from(e.target.value)
+    console.log(newTonalNote, e.target.name, e.target.value)
     this.setState(_ => ({[e.target.name]: e.target.value}))
   }
 
@@ -25,22 +35,52 @@ export default class TuningNote extends Component {
       color: 'rgb(255, 222, 64)',
       background: 'darkgrey',
       border: '1px solid black',
-      marginTop: '1em',
-      padding: '.25em',
+      boxSizing: 'border-box',
+      padding: '0px .25em', 
       fontFamily: 'monospace',
-      minWidth: '3em'
+      fontSize: '16px',
+      minWidth: '100%',
+      maxWidth: '3em',
+      display: this.state.editing ? 'none' : 'inline-block'
     }
-    let display = <span onClick={this.handleClick} style={tuningNoteStyle}> {this.props.note || '-'} </span>
     const inputStyle = {
-      maxWidth: '2em',
-      maxHeight: '2em',
-      padding: 0,
-      margin: 0,
+      minWidth: '1em',
+      maxWidth: '3em',
+      minHeight: '2em',
+      padding: '0',
+      margin: '0',
       color: 'rgb(255, 222, 64)',
       background: 'darkgrey',
       fontFamily: 'monospace',
     }
-    let input = <input onClick={this.handleClick} onChange={this.handleChange} type="text" name="note" value={this.state.note} style={inputStyle}/>
-    return this.state.editing ? input : display
+    const formStyle = {
+      display: this.state.editing ? 'block' : 'none',
+      maxWidth: '3em',
+      border: '0',
+      margin: '0',
+      padding: '0'
+    }
+    const containerStyle = {
+      minWidth: '3em',
+      maxWidth: '3em',
+      marginTop: '1em',
+      padding: 0
+    }
+    return (
+      <div style={containerStyle}>
+        <span onClick={this.handleClick} style={tuningNoteStyle}> 
+          {this.props.note || '-'} 
+        </span>
+        <form onSubmit={this.handleSubmit} style={formStyle}>
+          <input 
+            autoFocus 
+            onChange={this.handleChange} 
+            type="text" 
+            name="note" 
+            value={this.state.note} 
+            style={inputStyle} />
+        </form>
+      </div>
+    )
   }
 }

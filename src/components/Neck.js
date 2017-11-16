@@ -28,7 +28,7 @@ export default class Neck extends Component {
 
     if (target.name ==='strings' && value > this.state.strings) {
       tuning = this.state.tuning.slice()
-      tuning.push("X#")
+      tuning.push("C0")
       activeNotes = this.mapActiveNotes(tuning)
     }
 
