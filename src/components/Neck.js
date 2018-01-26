@@ -6,60 +6,54 @@ export default class Neck extends Component {
   constructor (props) {
     super(props)
     const tuning = ['E4', 'B3', 'G3', 'D3', 'A2', 'E2']
-    const frets = 24
-    const strings = 6
-    const activeNotes = this.mapActiveNotes(tuning)
     this.state = {
       tuning,
-      frets,
-      strings,
-      activeNotes
+      frets: 24,
+      strings: 6,
+      activeNotes: this.initializeActiveNotes(tuning) 
     }
   }
   
-  mapActiveNotes (tuning) {
-    const activeNotes = tuning.reduce((actives, note, i) => (actives[`string${i + 1}`] = null, actives), {})
-    return activeNotes
+  initializeActiveNotes (tuning) {
+    return tuning.reduce((activeNotes, _, index) => {
+      activeNotes[`string${index + 1}`] = null
+      return activeNotes
+    }, {})
   }
 
   handleChange = ({ target, ...event }) => {
-    const value = target.type === 'number' ? +target.value : target.value
-    let {activeNotes, tuning} = this.state
+    this.setState(({activeNotes, strings, tuning, ...prevState}) => {
+      const value = target.type === 'number' ? parseInt(target.value) : target.value
 
-    if (target.name ==='strings' && value > this.state.strings) {
-      tuning = this.state.tuning.slice()
-      tuning.push("C0")
-      activeNotes = this.mapActiveNotes(tuning)
-    }
+      let newTuning
+      if (target.name ==='strings' && value < strings) newTuning = tuning.slice(0, -1)
+      if (target.name ==='strings' && value > strings) newTuning = [...tuning, 'C0']
 
-    if (target.name === 'strings' && value < this.state.strings) {
-      tuning = this.state.tuning.slice()
-      tuning.pop()
-      activeNotes = this.mapActiveNotes(tuning)
-    }
-
-    this.setState(_ => ({
-      [target.name]: value,
-      activeNotes,
-      tuning
-    }), _ => console.log(this.state))
-  }
-
-  updateTuning = (e, i, note) => {
-    this.setState(prevState => {
-      prevState.tuning[i] = note
-      return prevState
+      return {
+        [target.name]: value,
+        activeNotes: this.initializeActiveNotes(newTuning),
+        tuning: newTuning
+      }
     })
   }
 
+  updateTuning = (e, i, note) => {
+    this.setState(({ tuning }) => ({
+      tuning: [
+        ...tuning.slice(0, i),
+        note,
+        ...tuning.slice(i + 1, tuning.length)
+      ]
+    }))
+  }
+
   updateActiveNote = (e, fret, string) => {
-    this.setState(prevState => {
-      let activeNotes = prevState.activeNotes
-      const currentFret = activeNotes[`string${string}`]
-      const newValue = currentFret === fret ? null : fret
-      activeNotes[`string${string}`] = newValue
-      return {activeNotes}
-    }, _ => console.log('update', this.state))
+    this.setState(({ activeNotes, ...prevState }) => {
+      const currentString = `string${string}`
+      const currentFret = activeNotes[currentString]
+      activeNotes[currentString] = currentFret === fret ? null : fret //toggle
+      return { activeNotes }
+    })
   }
 
   render() {
@@ -76,7 +70,8 @@ export default class Neck extends Component {
           frets={frets}
           strings={strings}
           updateActiveNote={this.updateActiveNote}
-          />
+        />
+
         <FretboardControls
           handleChange={this.handleChange}
           tuning={tuning}
