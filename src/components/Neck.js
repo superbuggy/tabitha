@@ -25,7 +25,7 @@ export default class Neck extends Component {
     this.setState(({activeNotes, strings, tuning, ...prevState}) => {
       const value = target.type === 'number' ? parseInt(target.value) : target.value
 
-      let newTuning
+      let newTuning = tuning
       if (target.name ==='strings' && value < strings) newTuning = tuning.slice(0, -1)
       if (target.name ==='strings' && value > strings) newTuning = [...tuning, 'C0']
 

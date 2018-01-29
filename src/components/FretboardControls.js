@@ -1,6 +1,7 @@
 import React from 'react'
 import ActiveNote from './ActiveNote'
 import TuningNote from './TuningNote'
+import { Note } from 'tonal'
 
 const FretboardControls = (props) => {
   const inputStyle = {
@@ -19,10 +20,9 @@ const FretboardControls = (props) => {
     margin: 0,
   }
 
-  const { handleChange } = props
-  const { tuning, frets, strings, activeNotes, updateTuning } = props
-  console.log(props)
-  let notes = tuning.slice().map((rootNote, i) => (
+  const { handleChange, tuning, frets, strings, activeNotes, updateTuning } = props
+
+  let notes = tuning.map((rootNote, i) => (
     <TuningNote key={i} note={rootNote} string={i + 1} updateTuning={updateTuning} />
   )).reverse()
 
@@ -30,30 +30,32 @@ const FretboardControls = (props) => {
     <ActiveNote key={i} root={tuning[i]} fret={activeNotes[note]} string={i + 1}/>
   )).reverse()
 
-  return (
-    <div style={divStyle}>
-      <input
-        onChange={handleChange}
-        name="frets"
-        type="number"
-        placeholder="..."
-        value={frets}
-        style={inputStyle}
-      />
+  const tonalNotes = Object.keys(activeNotes).map((string, i) => {
+    return Note.simplify(
+      Note.from({ alt: activeNotes[string] }, tuning[i])
+    )
+  })
 
-      <input
-        onChange={handleChange}
-        name="strings"
-        type="number"
-        placeholder="..."
-        value={strings}
-        style={inputStyle}
-      />
+  return <div style={divStyle}>
+          <input 
+            onChange={handleChange} 
+            name="frets" 
+            type="number" 
+            placeholder="..." 
+            value={frets} 
+            style={inputStyle} />
 
-      <div style={containerStyle}>{notes}</div>
-      <div style={containerStyle}>{activeNotesList}</div>
-    </div>
-  )
+          <input 
+            onChange={handleChange} 
+            name="strings" 
+            type="number" 
+            placeholder="..." 
+            value={strings} 
+            style={inputStyle} />
+
+          <div style={containerStyle}>{notes}</div>
+          <div style={containerStyle}>{activeNotesList}</div>
+        </div>;
 }
 
 export default FretboardControls

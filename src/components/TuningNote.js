@@ -77,13 +77,15 @@ export default class TuningNote extends Component {
           {this.props.note || 'uh oh'} 
         </span>
         <form onSubmit={this.handleSubmit} style={formStyle}>
-          <input 
-            ref={(input) => { this.input = input }} 
-            onChange={this.handleChange} 
-            type="text" 
-            name="note" 
-            value={this.state.note} 
-            style={inputStyle} />
+          <label>
+            <input 
+              ref={(input) => { this.input = input }} 
+              onChange={this.handleChange} 
+              type="text" 
+              name="note" 
+              value={this.state.note} 
+              style={inputStyle} />
+          </label>
         </form>
       </div>
     )
