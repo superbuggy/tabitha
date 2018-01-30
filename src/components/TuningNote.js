@@ -9,13 +9,9 @@ export default class TuningNote extends Component {
       // note: Note.from({ alt: 0 }, Note.simplify(this.props.note)),
       note: Note.pc(this.props.note),
       octave: Note.oct(this.props.note),
-      editing: false
     }
   }
 
-  handleClick = (e) => {
-    this.setState(_ => ({editing: true}))
-  }
 
   handleChange = (e) => {
     e.persist()
@@ -39,7 +35,6 @@ export default class TuningNote extends Component {
       fontSize: '16px',
       minWidth: '100%',
       maxWidth: '3em',
-      display: this.state.editing ? 'none' : 'inline-block'
     }
     const inputStyle = {
       fontSize: '16px',
@@ -55,18 +50,15 @@ export default class TuningNote extends Component {
       fontFamily: 'monospace',
     }
     const formStyle = {
-      display: this.state.editing ? 'inline-block' : 'none',
       maxWidth: '3em',
       border: '0',
       margin: '0',
-      padding: '0'
-    }
-    const containerStyle = {
+      padding: '0',
       minWidth: '3em',
-      maxWidth: '3em',
       marginTop: '1em',
       padding: 0
     }
+
 
     const notesForSelect = Scale.notes('C chromatic')
     const octaves = Array.from('012345678')
@@ -80,19 +72,14 @@ export default class TuningNote extends Component {
     ))
 
     return (
-      <div style={containerStyle}>
-        <span onClick={this.handleClick} style={tuningNoteStyle}> 
-          {this.props.note || 'uh oh'} 
-        </span>
-        <form style={formStyle}>
-          <select defaultValue={this.state.note} name="note" onChange={this.handleChange}>
-            {noteOptions}
-          </select>
-          <select defaultValue={this.state.octave} name="octave" onChange={this.handleChange}>
-            {octaveOptions}
-          </select>
-        </form>
-      </div>
+      <form style={formStyle}>
+        <select defaultValue={this.state.note} name="note" onChange={this.handleChange}>
+          {noteOptions}
+        </select>
+        <select defaultValue={this.state.octave} name="octave" onChange={this.handleChange}>
+          {octaveOptions}
+        </select>
+      </form>
     )
   }
 }
