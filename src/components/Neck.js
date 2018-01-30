@@ -37,12 +37,12 @@ export default class Neck extends Component {
     })
   }
 
-  updateTuning = (e, i, note) => {
+  updateTuning = (e, string, note) => {
     this.setState(({ tuning }) => ({
       tuning: [
-        ...tuning.slice(0, i),
+        ...tuning.slice(0, string),
         note,
-        ...tuning.slice(i + 1, tuning.length)
+        ...tuning.slice(string + 1, tuning.length)
       ]
     }))
   }
@@ -57,6 +57,8 @@ export default class Neck extends Component {
   }
 
   render() {
+    console.log(this, this.state.tuning)
+    console.log('render')
     const {tuning, frets, strings, activeNotes} = this.state
     const containerStyle = {
       display: 'flex',

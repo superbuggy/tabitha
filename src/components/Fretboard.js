@@ -12,11 +12,12 @@ const Fretboard = ({frets, strings, roots, minHeight, updateActiveNote, ...props
     minHeight,
     maxHeight: '320px'
   }
+
   const width = window.innerWidth
   const modifier = strings > 6 ? 6 : strings
   const stringHeight = parseFloat(minHeight/modifier, 2)
-  let guitarStrings = [...Array(strings)].map( (_, i) =>
-    (<GuitarString 
+  let guitarStrings = [...Array(strings)].map( (_, i) => (
+    <GuitarString 
       rootNote={roots[i]} 
       width={width} 
       frets={frets} 
@@ -24,11 +25,11 @@ const Fretboard = ({frets, strings, roots, minHeight, updateActiveNote, ...props
       string={i+1} 
       height={stringHeight}
       updateActiveNote={updateActiveNote}
-    />)
-  )
+    />
+  ))
   return (
     <div style={neckStyle}>
-        {guitarStrings}
+      {guitarStrings}
     </div>
   )
 }
