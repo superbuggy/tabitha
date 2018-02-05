@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Fretboard from './Fretboard'
-import FretboardControls from './FretboardControls'
+import Fretboard from '../Fretboard/Fretboard'
+import FretboardControls from '../FretboardControls/FretboardControls'
 
 export default class Neck extends Component {
   constructor (props) {
@@ -37,28 +37,26 @@ export default class Neck extends Component {
     })
   }
 
-  updateTuning = (e, string, note) => {
+  updateTuning = (e, guitarString, note) => {
     this.setState(({ tuning }) => ({
       tuning: [
-        ...tuning.slice(0, string),
+        ...tuning.slice(0, guitarString),
         note,
-        ...tuning.slice(string + 1, tuning.length)
+        ...tuning.slice(guitarString + 1, tuning.length)
       ]
     }))
   }
 
-  updateActiveNote = (e, fret, string) => {
+  updateActiveNote = (e, fret, guitarString) => {
     this.setState(({ activeNotes, ...prevState }) => {
-      const currentString = `string${string}`
+      const currentString = `string${guitarString}`
       const currentFret = activeNotes[currentString]
-      activeNotes[currentString] = currentFret === fret ? null : fret //toggle
+      activeNotes[currentString] = currentFret === fret ? null : fret //toggle note if already selected
       return { activeNotes }
     })
   }
 
   render() {
-    console.log(this, this.state.tuning)
-    console.log('render')
     const {tuning, frets, strings, activeNotes} = this.state
     const containerStyle = {
       display: 'flex',

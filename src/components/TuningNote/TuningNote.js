@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './TuningNote.css'
 import { Note, Scale } from 'tonal'
 
 export default class TuningNote extends Component {
@@ -25,40 +26,6 @@ export default class TuningNote extends Component {
   }
 
   render() {
-    const tuningNoteStyle = {
-      color: 'rgb(255, 222, 64)',
-      background: 'darkgrey',
-      border: '1px solid black',
-      boxSizing: 'border-box',
-      padding: '0px .25em', 
-      fontFamily: 'monospace',
-      fontSize: '16px',
-      minWidth: '100%',
-      maxWidth: '3em',
-    }
-    const inputStyle = {
-      fontSize: '16px',
-      minWidth: '3em',
-      maxWidth: '3em',
-      minHeight: '1em',
-      maxHeight: '1em',
-      padding: '0',
-      margin: '0',
-      border: '1px solid black',
-      color: 'rgb(255, 222, 64)',
-      background: 'darkgrey',
-      fontFamily: 'monospace',
-    }
-    const formStyle = {
-      maxWidth: '3em',
-      border: '0',
-      margin: '0',
-      padding: '0',
-      minWidth: '3em',
-      marginTop: '1em',
-      padding: 0
-    }
-
 
     const notesForSelect = Scale.notes('C chromatic')
     const octaves = Array.from('012345678')
@@ -72,7 +39,7 @@ export default class TuningNote extends Component {
     ))
 
     return (
-      <form style={formStyle}>
+      <form>
         <select defaultValue={this.state.note} name="note" onChange={this.handleChange}>
           {noteOptions}
         </select>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Neck from './Neck'
+import Neck from '../Neck/Neck'
 
 const App = _ => <Neck />
 

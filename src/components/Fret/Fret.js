@@ -1,6 +1,15 @@
 import React from 'react'
 
-export default ({ height, width, fret, string, onMouseOver, onClick, highlighted, active, ...props}) => {
+export default ({ 
+  height,
+   width,
+   fret,
+   string,
+   onMouseOver,
+   onClick,
+   highlighted,
+   active,
+   ...props}) => {
   const backgrounds = {
     highlighted: 'rgb(255, 201, 196)',
     default: 'rgb(249, 221, 156)',
@@ -24,14 +33,16 @@ export default ({ height, width, fret, string, onMouseOver, onClick, highlighted
     border: '2px solid grey',
     marginTop: height / 2
   }
-  let stringCellDiv = <div style={stringCellStyle}></div>
+
+  const handleMouseOver = (e) => onMouseOver(e, fret)
+  const handleClick = (e) => onClick(e, fret, string)
   return (
     <div 
-      onMouseOver={(e) => onMouseOver(e, fret)} 
-      onClick={(e) => onClick(e, fret, string)} 
+      onMouseOver={handleMouseOver}
+      onClick={handleClick}
       style={fretStyle}
     >
-      {stringCellDiv}
+      <div style={stringCellStyle}></div>
     </div>
   )
 }

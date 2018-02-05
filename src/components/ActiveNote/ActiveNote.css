@@ -1,0 +1,9 @@
+span {
+  color: rgb(64, 222, 64);
+  background: darkgrey;
+  border: 1px solid black;
+  padding: .25em;
+  margin: .25em;
+  font-family: monospace;
+  min-width: 5em;
+}

@@ -1,0 +1,9 @@
+.fretboard {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid rgb(213, 192, 142);
+  border-bottom: 2px solid rgb(213, 192, 142);
+  margin: 0 auto;
+  max-height: 320px;
+}

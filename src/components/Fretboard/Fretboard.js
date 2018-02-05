@@ -1,17 +1,9 @@
 import React from 'react'
-import GuitarString from './GuitarString'
+import './Fretboard.css'
+
+import GuitarString from '../GuitarString/GuitarString.js'
 
 const Fretboard = ({frets, strings, roots, minHeight, updateActiveNote, ...props}) => {
-  const neckStyle = {
-    width: '75%',
-    display: 'flex',
-    flexDirection: 'column',
-    borderTop: '2px solid rgb(213, 192, 142)',
-    borderBottom: '2px solid rgb(213, 192, 142)',
-    margin: '0 auto',
-    minHeight,
-    maxHeight: '320px'
-  }
 
   const width = window.innerWidth
   const modifier = strings > 6 ? 6 : strings
@@ -28,7 +20,7 @@ const Fretboard = ({frets, strings, roots, minHeight, updateActiveNote, ...props
     />
   ))
   return (
-    <div style={neckStyle}>
+    <div className="fretboard" style={{minHeight}}>
       {guitarStrings}
     </div>
   )
