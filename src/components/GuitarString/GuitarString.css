@@ -1,0 +1,9 @@
+p.nut {
+  max-width: 2em;
+  min-width: 2em;
+  font-family: monospace;
+  font-size: 16px;
+  padding-right: .25em;
+  padding-left: 1em;
+  margin-bottom: 12px;
+}
