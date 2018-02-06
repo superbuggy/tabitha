@@ -26,13 +26,13 @@ export default class Neck extends Component {
       const value = target.type === 'number' ? parseInt(target.value) : target.value
 
       let newTuning = tuning
-      if (target.name ==='strings' && value < strings) newTuning = tuning.slice(0, -1)
-      if (target.name ==='strings' && value > strings) newTuning = [...tuning, 'C0']
+      if (target.name === 'strings' && value < strings) newTuning = tuning.slice(0, -1)
+      if (target.name === 'strings' && value > strings) newTuning = [...tuning, 'C0']
 
       return {
-        [target.name]: value,
+        [target.name]: parseInt(value) || 0, //`frets` or `strings`
         activeNotes: this.initializeActiveNotes(newTuning),
-        tuning: newTuning
+        tuning: newTuning,
       }
     })
   }
