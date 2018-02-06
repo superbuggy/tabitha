@@ -7,7 +7,7 @@ const Fretboard = ({frets, strings, roots, minHeight, updateActiveNote, ...props
 
   const width = window.innerWidth
   const modifier = strings > 6 ? 6 : strings
-  const stringHeight = parseFloat(minHeight/modifier, 2)
+  const stringHeight = parseFloat(minHeight / modifier, 2)
   let guitarStrings = [...Array(strings)].map( (_, i) => (
     <GuitarString 
       rootNote={roots[i]} 

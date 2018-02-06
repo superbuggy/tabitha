@@ -34,21 +34,29 @@ const FretboardControls = ({
   return (
     <div className="container">
       <form>
-        <input 
-          onChange={handleChange} 
-          name="frets" 
-          type="number" 
-          placeholder="..." 
-          value={frets} 
-        />
+        <label className={'fretboard-controls'}>
+          Frets
+          <input
+            className={'fretboard-controls'}
+            onChange={handleChange} 
+            name="frets" 
+            type="number" 
+            placeholder="..." 
+            value={frets} 
+          />
+        </label>
 
-        <input 
-          onChange={handleChange} 
-          name="strings" 
-          type="number" 
-          placeholder="..." 
-          value={strings} 
-        />
+        <label className={'fretboard-controls'}>
+          Strings
+          <input
+            className={'fretboard-controls'}
+            onChange={handleChange} 
+            name="strings" 
+            type="number" 
+            placeholder="..." 
+            value={strings} 
+          />
+        </label>
       </form>
 
       <div className="control-container">
