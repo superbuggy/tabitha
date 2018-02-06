@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Fret from '../Fret/Fret'
+import './GuitarString.css'
 
 export default class GuitarString extends Component {
   constructor (props) {
@@ -10,9 +11,9 @@ export default class GuitarString extends Component {
     }
   }
 
-  highlight = (e, fret) => {
-    this.setState( _ =>({highlightedAt: fret}))
-  }
+  highlight = (e, fret) => this.setState( _ => ({highlightedAt: fret}) )
+
+  clearHighlight = () => this.setState( _ => ({highlightedAt: null}) )
 
   fret = (e, fret, string) => {
     this.setState( prevState => {
@@ -34,14 +35,7 @@ export default class GuitarString extends Component {
     const pStyle = {
       color: this.state.highlightedAt === 0
         ? 'rgb(255, 201, 196)'
-        : 'rgb(148, 128, 133)',
-      maxWidth: '2em',
-      minWidth: '2em',
-      fontFamily: 'monospace',
-      fontSize: '16px',
-      paddingRight: '.25em',
-      paddingLeft: '1em',
-      marginBottom: '12px'
+        : 'rgb(148, 128, 133)'
     }
     const fretWidth = parseFloat(this.props.width * .75 / this.props.frets, 2)
 
@@ -59,8 +53,9 @@ export default class GuitarString extends Component {
       />
     ))
     return (
-      <div style={nutStyle}>
+      <div style={nutStyle} onMouseOut={this.clearHighlight}>
         <p
+          className={"nut"}
           onMouseOver={(e) => this.highlight(e, 0)}
           onClick={(e) => this.fret(e, 0, this.props.string)}
           style={pStyle}>
