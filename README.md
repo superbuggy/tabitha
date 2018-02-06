@@ -4,8 +4,9 @@
 
 ## Planned Features
 
+  - Fret Markers
   - Chord Selection
-  - Chord Interpreter
+  - Chord Interpretation
 
 ## Known Bugs
 
