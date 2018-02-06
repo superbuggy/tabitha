@@ -1,9 +1,14 @@
 span {
-  color: rgb(64, 222, 64);
-  background: darkgrey;
-  border: 1px solid black;
-  padding: .25em;
-  margin: .25em;
+  min-width: 3em;
+  padding: .125em;
+  margin: .125em;
+  border: 4px solid rgb(161, 198, 26);
+  border-radius: .25em;
+  background: rgb(181, 218, 46);
   font-family: monospace;
-  min-width: 5em;
+  font-size: 24px;
+  color: rgb(255, 238, 0);
+  text-shadow: -1px -1px 4px rgb(219, 226, 157),
+                1px  1px 4px rgb(117, 97, 49);
+  text-align: center;
 }
