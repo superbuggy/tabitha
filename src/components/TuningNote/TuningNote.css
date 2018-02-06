@@ -1,7 +1,5 @@
 .tuning-note-form {
   max-width: 8em;
-  /* border: 2px solid rgb(84, 71, 43); */
-  /* background: rgb(123, 110, 81); */
   margin: 0;
   padding: 0;
   min-width: 3em;
@@ -10,7 +8,6 @@
 }
 
 .tuning-note-select {
-  /* -webkit-appearance: none; */
   border: 0;
   font-family: monospace;
   font-size: 24px;
