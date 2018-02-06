@@ -39,11 +39,19 @@ export default class TuningNote extends Component {
     ))
 
     return (
-      <form>
-        <select defaultValue={this.state.note} name="note" onChange={this.handleChange}>
+      <form className={'tuning-note-form'}>
+        <select
+          className={'tuning-note-select'}
+          defaultValue={this.state.note} 
+          name={"note"} 
+          onChange={this.handleChange}>
           {noteOptions}
         </select>
-        <select defaultValue={this.state.octave} name="octave" onChange={this.handleChange}>
+        <select
+          className={'tuning-note-select'}
+          defaultValue={this.state.octave} 
+          name={"octave"} 
+          onChange={this.handleChange}>
           {octaveOptions}
         </select>
       </form>
