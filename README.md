@@ -1,6 +1,6 @@
 # Tabitha
 
-> A sandbox for the fretboard
+> *A sandbox for the fretboard.*
 
 ## Planned Features
 
