@@ -35,7 +35,9 @@ export default class GuitarString extends Component {
     const pStyle = {
       color: this.state.highlightedAt === 0
         ? 'rgb(255, 201, 196)'
-        : 'rgb(148, 128, 133)'
+        : this.state.frettedAt === 0 
+          ? 'rgb(249, 67, 67)'
+          : 'rgb(148, 128, 133)'
     }
     const fretWidth = parseFloat(this.props.width * .75 / this.props.frets, 2)
 
@@ -55,7 +57,7 @@ export default class GuitarString extends Component {
     return (
       <div style={nutStyle} onMouseOut={this.clearHighlight}>
         <p
-          className={"nut"}
+          className={'nut'}
           onMouseOver={(e) => this.highlight(e, 0)}
           onClick={(e) => this.fret(e, 0, this.props.string)}
           style={pStyle}>
