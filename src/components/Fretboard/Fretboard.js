@@ -20,7 +20,7 @@ const Fretboard = ({frets, strings, roots, minHeight, updateActiveNote, ...props
     />
   ))
   return (
-    <div className="fretboard" style={{minHeight}}>
+    <div className={'fretboard'} style={{minHeight}}>
       {guitarStrings}
     </div>
   )
