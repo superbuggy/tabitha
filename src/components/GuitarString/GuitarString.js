@@ -21,7 +21,6 @@ export default class GuitarString extends Component {
       this.props.updateActiveNote(e, fret, string)
       return {frettedAt: newFret}
     })
-    //TODO: add update
   }
 
   render () {

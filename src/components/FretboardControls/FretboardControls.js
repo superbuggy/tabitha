@@ -1,10 +1,10 @@
 import React from 'react'
-  import './FretboardControls.css'
+import './FretboardControls.css'
 import ActiveNote from '../ActiveNote/ActiveNote'
 import TuningNote from '../TuningNote/TuningNote'
-import { Note } from 'tonal'
+// import { Note } from 'tonal'
 
-const FretboardControls = ({ 
+const FretboardControls = ({
   handleChange,
    tuning,
    frets,
@@ -12,7 +12,6 @@ const FretboardControls = ({
    activeNotes,
    updateTuning,
    ...props }) => {
-
   let TuningNotes = tuning.map((rootNote, i) => (
     <TuningNote
       key={i}
@@ -52,7 +51,6 @@ const FretboardControls = ({
             onChange={handleChange}
             name={'strings'}
             type={'number'}
-            placeholder={'...'}
             value={strings}
           />
         </label>
